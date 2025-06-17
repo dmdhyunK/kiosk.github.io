@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>결제 처리</title>
+  <link rel="stylesheet" href="FLOW.css" />
+  <style>
+    /* ─── 팝업 오버레이 전체 화면 ─── */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;             /* 기본 숨김 */
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+    }
+
+    /* ─── 팝업 대화 상자 ─── */
+    .popup-dialog {
+      width: 400px;
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-dialog h2.popup-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .popup-dialog .popup-message {
+      font-size: 18px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .popup-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .popup-buttons .popup-btn {
+      width: 100px;
+      height: 50px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #ddd;
+      cursor: pointer;
+    }
+
+    .popup-buttons .popup-btn:hover {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 1) 헤더 -->
+    <header>
+      <div class="navbar">
+        <div class="nav-left">
+          <button class="nav-button" onclick="history.back()">이전으로</button>
+        </div>
+        <div class="nav-center">
+          <svg width="97" height="63" viewBox="0 0 97 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20.3368" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<circle cx="81.3356" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<path d="M96.4051 10.8457H68.365V21.3223H68.3611V42.042H68.365V62.2178H55.2107V0.000976562H96.4051V10.8457Z" fill="#F6F7F9"/>
+<ellipse cx="30.3557" cy="29.9965" rx="3.32233" ry="5.99752" fill="#F6F7F9"/>
+<path d="M36.8293 30.9589C34.6905 29.7241 35.9381 28.1052 36.8293 27.6172H34.156V30.9589H36.8293Z" fill="#F6F7F9"/>
+<path d="M25.3174 0C29.8945 0 33.7123 0.678269 36.7705 2.03516C39.8287 3.39211 42.1278 5.27544 43.667 7.68555C45.2061 10.0754 45.9756 12.8303 45.9756 15.9492C45.9755 18.3793 45.4896 20.5166 44.5176 22.3594C43.5455 24.1817 42.2088 25.681 40.5078 26.8555C38.827 28.0097 36.9022 28.8294 34.7354 29.3154V29.9238C37.1049 30.0251 39.3229 30.6933 41.3887 31.9287C43.4745 33.1641 45.1658 34.8954 46.4619 37.123C47.758 39.3306 48.4062 41.9643 48.4062 45.0225C48.4061 48.3233 47.5856 51.2702 45.9453 53.8623C44.3251 56.4342 41.9247 58.4701 38.7451 59.9688C35.5655 61.4673 31.6462 62.2168 26.9883 62.2168H0.40625V0H25.3174ZM13.5605 24.8623H13.5586V37.2939H13.5605V51.4629H24.2852C27.9504 51.4628 30.6237 50.7633 32.3047 49.3662C33.9856 47.9486 34.826 46.0649 34.8262 43.7158C34.8262 41.9945 34.4112 40.4755 33.5811 39.1592C32.7507 37.8428 31.5655 36.8099 30.0264 36.0605C29.7248 35.9118 29.4116 35.7774 29.0869 35.6582V24.5762C30.0503 23.9884 30.8399 23.2497 31.4541 22.3594C32.2844 21.1848 32.7001 19.776 32.7002 18.1357C32.7001 15.8879 31.8997 14.0754 30.2998 12.6982C28.7201 11.3211 26.472 10.6328 23.5557 10.6328H13.5605V24.8623Z" fill="#F6F7F9"/>
+        </div>
+        <div class="nav-right">
+          <button class="nav-button" onclick="location.href='index.html'">처음으로</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2) 진행 바 -->
+    <div class="progress-bar">
+      <div class="step active">
+        <span class="circle"></span><p>메뉴선택</p>
+      </div>
+      <div class="connector active"></div>
+      <div class="step active">
+        <span class="circle"></span><p>결제하기</p>
+      </div>
+      <div class="connector"></div>
+      <div class="step">
+        <span class="circle"></span><p>주문완료</p>
+      </div>
+    </div>
+
+    <!-- 4) 안내 문구 -->
+    <div class="guide-text">신용카드를 <br> 투입구에 꽂아주세요.</div>
+    <video src="../images/ic칩 투입.mp4" controls loop></video>
+    <div class="info">IC칩이 단말기에 투입되도록 넣어주세요.</div>
+
+    <!-- 직원 호출 (더 이상 staff.html로 이동하지 않음) -->
+    <div class="bottom-controls">
+      <button id="staff-call-btn" class="staff-call">직원호출</button>
+    </div>
+  </div>
+
+  <!-- ─── 영수증 출력 팝업 (5초 후 자동 오픈) ─── -->
+  <div class="popup-overlay" id="payment-popup">
+    <div class="popup-dialog">
+      <h2 class="popup-title">[정상승인]</h2>
+      <div class="popup-message">영수증을 출력하시겠습니까?</div>
+      <div class="popup-buttons">
+        <button class="popup-btn confirm" id="btn-print">출력</button>
+        <button class="popup-btn cancel"  id="btn-no-print">미출력</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 직원 호출 팝업 오버레이 ─── -->
+  <div class="overlay" id="staff-overlay">
+    <div class="popup-dialog">
+      <h2 class="popup-title">직원 호출</h2>
+      <div class="popup-message">직원을 호출하시겠습니까?</div>
+      <div class="popup-buttons">
+        <button class="popup-btn confirm" id="confirm-staff">예</button>
+        <button class="popup-btn cancel"  id="cancel-staff">아니요</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── 1) 결제 팝업 자동 열기 (페이지 로드 후 5초) ───
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('payment-popup').style.display = 'flex';
+      }, 5000);
+    });
+
+    // 결제 팝업 버튼 핸들러
+    document.getElementById('btn-print').addEventListener('click', () => {
+      // TODO: 실제 영수증 출력 로직 호출
+      alert('영수증을 출력합니다.');
+      document.getElementById('payment-popup').style.display = 'none';
+      location.href = 'number.html';
+    });
+
+    document.getElementById('btn-no-print').addEventListener('click', () => {
+      alert('영수증 출력을 건너뜁니다.');
+      document.getElementById('payment-popup').style.display = 'none';
+      location.href = 'number.html';
+    });
+
+    // ─── 2) 직원 호출 팝업 열기/닫기/확인 ───
+
+    const staffOverlay = document.getElementById('staff-overlay');
+    const btnOpenStaff   = document.getElementById('staff-call-btn');
+    const btnConfirmStaff = document.getElementById('confirm-staff');
+    const btnCancelStaff  = document.getElementById('cancel-staff');
+
+    // 팝업 열기
+    function showStaffPopup() {
+      staffOverlay.style.display = 'flex';
+    }
+
+    // 팝업 닫기
+    function closeStaffPopup() {
+      staffOverlay.style.display = 'none';
+    }
+
+    // 팝업 “예” 버튼 로직
+    function confirmStaffCall() {
+      // TODO: 직원 호출 API 요청 등을 여기에 구현
+      alert('직원 호출 요청이 접수되었습니다.');
+      closeStaffPopup();
+    }
+
+    // 이벤트 리스너 등록
+    btnOpenStaff.addEventListener('click', showStaffPopup);
+    btnCancelStaff.addEventListener('click', closeStaffPopup);
+    btnConfirmStaff.addEventListener('click', confirmStaffCall);
+  </script>
+</body>
+</html>

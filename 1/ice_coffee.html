@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>음료</title>
+  <link rel="stylesheet" href="FLOW.css" />
+  <!-- 아래의 CSS를 FLOW.css에 추가하거나, 이 파일 안에 <style>로 붙여 넣으셔도 됩니다. -->
+  <style>
+    /* ───────────────────────────────────────────────
+       #wrap: 세로로 flex 컨테이너 (헤더~푸터 고정, 중간만 스크롤)
+       ─────────────────────────────────────────────── */
+    #wrap {
+      display: flex;
+      flex-direction: column;
+      height: 100vh; /* 화면 전체 높이 차지 */
+    }
+    /* 헤더·프로그레스바·탭바·아이콘바·푸터 고정 */
+    header,
+    .progress-bar,
+    .tab-bar,
+    .icon-btns,
+    footer {
+      flex: 0 0 auto;
+    }
+    /* 카드 목록만 남은 영역 차지하며 scroll */
+    .grid-container {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 0 20px;       /* 기존 FLOW.css 좌우 여백과 동일하게 */
+      box-sizing: border-box;
+      /* 푸터 높이에 맞춰 아래 여유 확보 (푸터 높이 180px 가정) */
+      padding-bottom: 180px;
+      margin-top: 20px;      /* 필요 시 위쪽 간격 */
+    }
+    /* .card-grid 자체는 FLOW.css에 정의된 grid-template-columns만 남겨두고,
+       여기서는 gap만 보장 */
+    .card-grid {
+      display: grid;
+      gap: 20px;
+      /* 예: .card-grid.grid-2 { grid-template-columns: repeat(2,1fr); } 
+         은 기존 FLOW.css에 그대로 유지 */
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 1) 헤더 -->
+    <header>
+      <div class="navbar">
+        <div class="nav-left">
+          <button class="nav-button" onclick="history.back()">이전으로</button>
+        </div>
+        <div class="nav-center">
+         <svg width="97" height="63" viewBox="0 0 97 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20.3368" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<circle cx="81.3356" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<path d="M96.4051 10.8457H68.365V21.3223H68.3611V42.042H68.365V62.2178H55.2107V0.000976562H96.4051V10.8457Z" fill="#F6F7F9"/>
+<ellipse cx="30.3557" cy="29.9965" rx="3.32233" ry="5.99752" fill="#F6F7F9"/>
+<path d="M36.8293 30.9589C34.6905 29.7241 35.9381 28.1052 36.8293 27.6172H34.156V30.9589H36.8293Z" fill="#F6F7F9"/>
+<path d="M25.3174 0C29.8945 0 33.7123 0.678269 36.7705 2.03516C39.8287 3.39211 42.1278 5.27544 43.667 7.68555C45.2061 10.0754 45.9756 12.8303 45.9756 15.9492C45.9755 18.3793 45.4896 20.5166 44.5176 22.3594C43.5455 24.1817 42.2088 25.681 40.5078 26.8555C38.827 28.0097 36.9022 28.8294 34.7354 29.3154V29.9238C37.1049 30.0251 39.3229 30.6933 41.3887 31.9287C43.4745 33.1641 45.1658 34.8954 46.4619 37.123C47.758 39.3306 48.4062 41.9643 48.4062 45.0225C48.4061 48.3233 47.5856 51.2702 45.9453 53.8623C44.3251 56.4342 41.9247 58.4701 38.7451 59.9688C35.5655 61.4673 31.6462 62.2168 26.9883 62.2168H0.40625V0H25.3174ZM13.5605 24.8623H13.5586V37.2939H13.5605V51.4629H24.2852C27.9504 51.4628 30.6237 50.7633 32.3047 49.3662C33.9856 47.9486 34.826 46.0649 34.8262 43.7158C34.8262 41.9945 34.4112 40.4755 33.5811 39.1592C32.7507 37.8428 31.5655 36.8099 30.0264 36.0605C29.7248 35.9118 29.4116 35.7774 29.0869 35.6582V24.5762C30.0503 23.9884 30.8399 23.2497 31.4541 22.3594C32.2844 21.1848 32.7001 19.776 32.7002 18.1357C32.7001 15.8879 31.8997 14.0754 30.2998 12.6982C28.7201 11.3211 26.472 10.6328 23.5557 10.6328H13.5605V24.8623Z" fill="#F6F7F9"/>
+        </div>
+        <div class="nav-right">
+          <button class="nav-button" onclick="location.href='FLOW.html'">처음으로</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2) 프로그레스 바 -->
+    <div class="progress-bar">
+      <div class="step active">
+        <span class="circle"></span>
+        <p>메뉴선택</p>
+      </div>
+      <div class="connector"></div>
+      <div class="step">
+        <span class="circle"></span>
+        <p>결제하기</p>
+      </div>
+      <div class="connector"></div>
+      <div class="step">
+        <span class="circle"></span>
+        <p>주문완료</p>
+      </div>
+    </div>
+
+    <!-- 3) 탭바 -->
+    <div class="tab-bar">
+      <button class="tab" onclick="location.href='set.html'">햄버거 세트</button>
+      <button class="tab" onclick="location.href='item.html'">단품</button>
+      <button class="tab active">음료</button>
+    </div>
+
+    <!-- 4) 아이콘 버튼들 -->
+    <div class="icon-btns">
+      <button class="icon-btn" onclick="location.href='hot_coffee.html'">
+        <p>핫커피</p>
+      </button>
+      <button class="icon-btn active" onclick="location.href='ice_coffee.html'">
+        <p>아이스커피</p>
+      </button>
+      <button class="icon-btn" onclick="location.href='drink.html'">
+        <p>음료</p>
+      </button>
+    </div>
+
+    <!-- 5) 카드 목록만 스크롤 가능한 영역 시작 -->
+    <div class="grid-container">
+      <section class="card-grid grid-2">
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/아메리카노-removebg-preview.png" alt="아이스 커피" />
+          <h3>아이스 아메리카노</h3>
+          <h4>3,400원</h4>
+        </div>
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/카페라떼-removebg-preview.png" alt="아이스 카페라떼" />
+          <h3>아이스 카페라떼</h3>
+          <h4>4,400원</h4>
+        </div>
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/바닐라_라떼-removebg-preview.png" alt="바닐라 라떼" />
+          <h3>아이스 바닐라 라떼</h3>
+          <h4>4,600원</h4>
+        </div>
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/드립커피-removebg-preview.png" alt="드립커피" />
+          <h3>아이스 드립커피</h3>
+          <h4>4,600원</h4>
+        </div>
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/아메리카노-removebg-preview.png" alt="디카페인 아메리카노" />
+          <h3>디카페인 아이스 아메리카노</h3>
+          <h4>3,400원</h4>
+        </div>
+        <div class="card menu-item">
+          <img src="../음료/아이스 커피/카페라떼-removebg-preview.png" alt="디카페인 카페라떼" />
+          <h3>디카페인 아이스 카페라떼</h3>
+          <h4>4,400원</h4>
+        </div>
+        <!-- 필요 시 더 많은 카드 아이템 추가 가능 -->
+      </section>
+    </div>
+    <!-- 5) 카드 목록만 스크롤 가능한 영역 끝 -->
+
+    <!-- 6) 장바구니 & 전체 결제 하기 -->
+    <footer>
+      <div class="menu-box"></div>
+      <div class="footer-buttons">
+        <div id="total-price">0원</div>
+        <button class="footer-button">전체 결제 하기</button>
+      </div>
+    </footer>
+
+    <!-- 7) 결제 확인 팝업 -->
+    <div class="popup-overlay" id="payment-popup">
+      <div class="popup-dialog">
+        <h2 class="popup-title">고객님이 선택하신 메뉴는</h2>
+        <div class="popup-list" id="popup-detail"></div>
+        <div id="popup-total" class="popup-message"></div>
+        <div class="popup-ask">결제를 진행하시겠습니까?</div>
+        <div class="popup-buttons">
+          <button class="popup-btn confirm">네</button>
+          <button class="popup-btn cancel">아니요</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // (기존에 작성하신 장바구니 / 결제 팝업 스크립트를 그대로 사용)
+    const itemMap = new Map();
+    let totalPrice = 0;
+
+    document.querySelectorAll('.menu-item').forEach(menu => {
+      menu.addEventListener('click', () => {
+        const name = menu.querySelector('h3').innerText;
+        const price = parseInt(menu.querySelector('h4').innerText.replace(/[^0-9]/g,''), 10);
+        const src  = menu.querySelector('img').src;
+        if (!itemMap.has(name)) {
+          itemMap.set(name, { img: src, count: 1, price });
+        } else {
+          itemMap.get(name).count++;
+        }
+        totalPrice += price;
+        updateFooter();
+        renderCart();
+      });
+    });
+
+    function updateFooter() {
+      document.getElementById('total-price').innerText =
+        totalPrice.toLocaleString() + '원';
+    }
+
+    function renderCart() {
+      const box = document.querySelector('.menu-box');
+      box.innerHTML = '';
+      itemMap.forEach((v, name) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <span class="close-button">×</span>
+          <img src="${v.img}" alt="${name}" />
+        `;
+        div.querySelector('.close-button').onclick = e => {
+          e.stopPropagation();
+          v.count--;
+          totalPrice -= v.price;
+          if (v.count === 0) itemMap.delete(name);
+          updateFooter();
+          renderCart();
+        };
+        box.appendChild(div);
+      });
+    }
+
+    document.querySelector('.footer-button').addEventListener('click', e => {
+      e.preventDefault();
+      openPaymentPopup();
+    });
+
+    function openPaymentPopup() {
+      const listEl = document.getElementById('popup-detail');
+      listEl.innerHTML = '';
+      itemMap.forEach((v, name) => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        row.innerHTML = `
+          <img src="${v.img}" alt="">
+          <div class="item-name">${name}</div>
+          <div class="item-count">x${v.count}</div>
+        `;
+        listEl.appendChild(row);
+      });
+      document.getElementById('popup-total').innerText =
+        `총 결제 금액: ${totalPrice.toLocaleString()}원`;
+      document.getElementById('payment-popup').style.display = 'flex';
+    }
+
+    function closePaymentPopup() {
+      document.getElementById('payment-popup').style.display = 'none';
+    }
+    document.querySelector('.popup-btn.cancel').onclick = closePaymentPopup;
+    document.querySelector('.popup-btn.confirm').onclick = () => {
+      location.href = 'pay.html';
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!-- meat.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>단품 &gt; 햄버거</title>
+  <link rel="stylesheet" href="FLOW.css"/>
+</head>
+<body>
+  <div id="wrap">
+    <!-- 1) 헤더 -->
+    <header>
+      <div class="navbar">
+        <div class="nav-left">
+          <button class="nav-button"  onclick="history.back()">이전으로</button>
+        </div>
+        <div class="nav-center">
+          <svg width="97" height="63" viewBox="0 0 97 63" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="20.3368" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<circle cx="81.3356" cy="30.6818" r="5.34679" fill="#F6F7F9"/>
+<path d="M96.4051 10.8457H68.365V21.3223H68.3611V42.042H68.365V62.2178H55.2107V0.000976562H96.4051V10.8457Z" fill="#F6F7F9"/>
+<ellipse cx="30.3557" cy="29.9965" rx="3.32233" ry="5.99752" fill="#F6F7F9"/>
+<path d="M36.8293 30.9589C34.6905 29.7241 35.9381 28.1052 36.8293 27.6172H34.156V30.9589H36.8293Z" fill="#F6F7F9"/>
+<path d="M25.3174 0C29.8945 0 33.7123 0.678269 36.7705 2.03516C39.8287 3.39211 42.1278 5.27544 43.667 7.68555C45.2061 10.0754 45.9756 12.8303 45.9756 15.9492C45.9755 18.3793 45.4896 20.5166 44.5176 22.3594C43.5455 24.1817 42.2088 25.681 40.5078 26.8555C38.827 28.0097 36.9022 28.8294 34.7354 29.3154V29.9238C37.1049 30.0251 39.3229 30.6933 41.3887 31.9287C43.4745 33.1641 45.1658 34.8954 46.4619 37.123C47.758 39.3306 48.4062 41.9643 48.4062 45.0225C48.4061 48.3233 47.5856 51.2702 45.9453 53.8623C44.3251 56.4342 41.9247 58.4701 38.7451 59.9688C35.5655 61.4673 31.6462 62.2168 26.9883 62.2168H0.40625V0H25.3174ZM13.5605 24.8623H13.5586V37.2939H13.5605V51.4629H24.2852C27.9504 51.4628 30.6237 50.7633 32.3047 49.3662C33.9856 47.9486 34.826 46.0649 34.8262 43.7158C34.8262 41.9945 34.4112 40.4755 33.5811 39.1592C32.7507 37.8428 31.5655 36.8099 30.0264 36.0605C29.7248 35.9118 29.4116 35.7774 29.0869 35.6582V24.5762C30.0503 23.9884 30.8399 23.2497 31.4541 22.3594C32.2844 21.1848 32.7001 19.776 32.7002 18.1357C32.7001 15.8879 31.8997 14.0754 30.2998 12.6982C28.7201 11.3211 26.472 10.6328 23.5557 10.6328H13.5605V24.8623Z" fill="#F6F7F9"/>
+        </div>
+        <div class="nav-right">
+          <button class="nav-button" onclick="location.href='FLOW.html'">처음으로</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- 2) 진행 바 -->
+    <div class="progress-bar">
+      <div class="step active">
+        <span class="circle"></span><p>메뉴선택</p>
+      </div>
+      <div class="connector"></div>
+      <div class="step">
+        <span class="circle"></span><p>결제하기</p>
+      </div>
+      <div class="connector"></div>
+      <div class="step">
+        <span class="circle"></span><p>주문완료</p>
+      </div>
+    </div>
+
+    <!-- 3) 탭 바 -->
+    <div class="tab-bar">
+      <button class="tab" onclick="location.href='set.html'">햄버거 세트</button>
+      <button class="tab active">단품</button>
+      <button class="tab" onclick="location.href='drinks.html'">음료</button>
+    </div>
+
+    <!-- 4) 아이콘 버튼들 -->
+    <div class="icon-btns">
+      <button class="icon-btn active" onclick="location.href='set.html'">
+        <p>햄버거</p>
+      </button>
+      <button class="icon-btn" onclick="location.href='side.html'">
+        <p>사이드</p>
+      </button>
+      <button class="icon-btn" onclick="location.href='drink.html'">
+        <p>음료</p>
+      </button>
+    </div>
+
+    <!-- 5) 카드 그리드 -->
+    <section class="card-grid grid-2">
+      <div class="card menu-item">
+        <img src="../햄부기/닭/맥치킨_.png" alt="치킨버거">
+        <h3>치킨버거</h3>
+        <h4>3,400원</h4>
+      </div>
+      <div class="card menu-item">
+        <img src="../햄부기/닭/맥스파이시_상하이_버거.png" alt="매콤 상하이버거">
+        <h3>매콤 상하이버거</h3>
+        <h4>3,800원</h4>
+      </div>
+      <div class="card menu-item">
+        <img src="../햄부기/닭/맥크리스피_클래식_버거.png" alt="바삭치킨버거">
+        <h3>바삭치킨 버거</h3>
+        <h4>4,400원</h4>
+      </div>
+      <div class="card menu-item">
+        <img src="../햄부기/닭/맥크리스피_디럭스_버거.png" alt="바삭치킨 두툼버거">
+        <h3>바삭치킨 두툼버거</h3>
+        <h4>4,600원</h4>
+      </div>
+    </section>
+
+    <!-- 6) 직원호출 -->
+    <div class="bottom-controls">
+      <button class="staff-call" onclick="alert('직원 호출')">직원호출</button>
+    </div>
+
+       <!-- 7) 장바구니 & 전체 결제 하기 -->
+    <footer>
+      <div class="menu-box"></div>
+      <div class="footer-buttons">
+        <div id="total-price">0원</div>
+        <button class="footer-button">전체 결제 하기</button>
+      </div>
+    </footer>
+
+    <!-- 8) 결제 확인 팝업 -->
+    <div class="popup-overlay" id="payment-popup">
+      <div class="popup-dialog">
+        <h2 class="popup-title">고객님이 선택하신 메뉴는</h2>
+
+        <!-- 여기에 각 메뉴가 들어갑니다 -->
+        <div class="popup-list" id="popup-detail"></div>
+
+        <!-- **빠진 총액 요소를 추가** -->
+        <div id="popup-total" class="popup-message"></div>
+
+        <div class="popup-ask">결제를 진행하시겠습니까?</div>
+        <div class="popup-buttons">
+          <button class="popup-btn confirm">네</button>
+          <button class="popup-btn cancel">아니요</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'ko-KR';
+      window.speechSynthesis.speak(utter);
+    }
+
+    // URL 파라미터에서 thumb, title 가져오기
+    function getQueryParam(param) {
+      const query = new URLSearchParams(window.location.search);
+      return query.get(param);
+    }
+
+    const thumbPath = getQueryParam('thumb');
+    const titleText = getQueryParam('title');
+
+    // 썸네일 이미지와 타이틀 적용
+    if (thumbPath && titleText) {
+      const thumbEl = document.getElementById('set-thumb');
+      thumbEl.style.backgroundImage = `url(${decodeURIComponent(thumbPath)})`;
+      thumbEl.style.backgroundSize = 'cover';
+      thumbEl.style.backgroundPosition = 'center';
+      document.getElementById('set-title').innerText = decodeURIComponent(titleText);
+    }
+
+    let totalPrice = 0;
+    const cartMap = new Map();
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanes   = document.querySelectorAll('.tab-pane');
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+        tabButtons.forEach(x => x.classList.remove('active'));
+        tabPanes.forEach(x => x.classList.remove('active-content'));
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active-content');
+      });
+    });
+
+    function renderBottomCart() {
+      const bottomCart = document.querySelector('.bottom-cart');
+      bottomCart.innerHTML = '';
+      cartMap.forEach((item, key) => {
+        const cartDiv = document.createElement('div');
+        cartDiv.className = 'cart-item';
+        cartDiv.innerHTML = `
+          <img src="${item.src}" alt="${key}" />
+          <div class="remove-btn">×</div>
+        `;
+        cartDiv.querySelector('.remove-btn').addEventListener('click', e => {
+          e.stopPropagation();
+          item.count--;
+          totalPrice -= item.price;
+          if (item.count <= 0) {
+            cartMap.delete(key);
+          }
+          updateBadge(key);
+          renderBottomCart();
+          updateFooter();
+        });
+        bottomCart.appendChild(cartDiv);
+      });
+    }
+
+    function updateBadge(key) {
+      const selector = `.item-card img[alt="${key}"]`;
+      const imgTag = document.querySelector(selector);
+      if (!imgTag) return;
+      const card = imgTag.closest('.item-card');
+      let badge = card.querySelector('.badge');
+      if (cartMap.has(key)) {
+        const count = cartMap.get(key).count;
+        if (!badge) {
+          badge = document.createElement('div');
+          badge.className = 'badge';
+          card.appendChild(badge);
+        }
+        badge.innerText = count;
+      } else {
+        if (badge) {
+          badge.remove();
+        }
+      }
+    }
+
+    document.querySelectorAll('.item-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const imgTag = card.querySelector('img');
+        if (!imgTag) return;
+        const key = imgTag.alt;
+        const src = imgTag.src;
+        const priceMap = {
+          '맥너겟': 3000,
+          '치즈스틱': 2500,
+          '치킨텐더': 2800,
+          '해쉬브라운': 2200,
+          '코울슬로': 2000,
+          '아이스 아메리카노': 3400,
+          '아이스 카페라떼': 4400,
+          '아이스 바닐라 라떼': 4600,
+          '아메리카노': 3800,
+          '카페 라떼': 4600,
+          '바닐라 라떼': 4600,
+          '사이다': 4400,
+          '콜라': 4600,
+          '주스': 3800
+        };
+        const price = priceMap[key] || 0;
+
+        if (!cartMap.has(key)) {
+          cartMap.set(key, { count: 1, src, price });
+        } else {
+          cartMap.get(key).count++;
+        }
+
+        totalPrice += price;
+        updateBadge(key);
+        renderBottomCart();
+        updateFooter();
+        speak(key + ' 선택');
+      });
+    });
+
+    function updateFooter() {
+      document.getElementById('total-price').innerText =
+        totalPrice.toLocaleString() + '원';
+    }
+
+    function openPaymentPopup() {
+      const detailBox = document.getElementById('popup-detail');
+      detailBox.innerHTML = '';
+      cartMap.forEach((item, key) => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        row.innerHTML = `<span>${key}</span><span>x${item.count}</span>`;
+        detailBox.appendChild(row);
+      });
+      const totalCount = Array.from(cartMap.values()).reduce((acc, cur) => acc + cur.count, 0);
+      document.getElementById('popup-total').innerText = `총 수량: ${totalCount}`;
+
+      document.getElementById('payment-popup').classList.add('active');
+      document.body.classList.add('popup-open');
+    }
+    function closePaymentPopup() {
+      document.getElementById('payment-popup').classList.remove('active');
+      document.body.classList.remove('popup-open');
+    }
+
+    document.querySelector('.popup-dialog .cancel')
+            .addEventListener('click', closePaymentPopup);
+    document.querySelector('.popup-dialog .confirm')
+            .addEventListener('click', () => { location.href = 'pay.html'; });
+
+    document.querySelector('.fixed-bottom-buttons .confirm-btn')
+            .addEventListener('click', openPaymentPopup);
+  </script>
+</body>
+</html>
